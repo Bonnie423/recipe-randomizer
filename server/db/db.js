@@ -20,3 +20,7 @@ export async function getAllRecipes(){
 export async function getComments(recipeId){
   return connection('comments').where('recipe_id', recipeId).select('comment')
 }
+
+export async function getRecipesBySearch(recipe){
+  return connection('recipes').select('*').where('name', 'like', `${recipe}%`)
+}

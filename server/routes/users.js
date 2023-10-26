@@ -18,6 +18,16 @@ router.get('/recipes', async (req, res) => {
   res.render('partials/showRecipes', { recipes })
 })
 
+router.post('/recipes', async (req, res) => {
+  const recipe = req.body.search
+  console.log(recipe)
+  const recipes = await db.getRecipesBySearch(recipe)
+  console.log(recipes)
+
+  res.render('partials/showRecipes', { recipes })
+})
+
+
 router.get('/:id/comments', async (req, res) => {
   const recipeId = Number(req.params.id)
   const comments = await db.getComments(recipeId)
