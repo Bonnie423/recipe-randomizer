@@ -21,10 +21,6 @@ export function seed(knex) {
           recipe_id: 2, // Referencing recipe with ID 2
         },
         // Add more comment entries here
-      ]);
-    });
+      ])
+    })
 }
-
-
-
-
