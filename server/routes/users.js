@@ -12,4 +12,15 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/recipes', async (req, res) => {
+  const recipes = await db.getAllRecipes()
+
+  res.render('partials/showRecipes', { recipes })
+})
+
+router.get('/:id/comments', async (req, res) => {
+  const recipeId = Number(req.params.id)
+  const comments = await db.getComments(recipeId)
+  res.render('partials/viewComments', { comments })
+})
 export default router
