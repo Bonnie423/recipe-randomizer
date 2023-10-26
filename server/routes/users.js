@@ -26,11 +26,23 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/id', async(req,res)=>{
-  const randomNumber = Math.floor(Math.random()*10)
-  const id = Number(req.params.randomNumber)
-  console.log(id)
-})
+router.get('/random', async(req, res) => {
+  console.log('hi')
+  try { 
+    const recipes = await db.getAllRecipes();
+    console.log(recipes)
+
+    if (recipes.length === 0 ){
+      return res.status(404).json({error: 'no recipes were found'})
+    }
+    console.log(recipes)
+    const randomIndex = Math.floor(Math.random()* recipes.length);
+   res.redirect(`/${randomIndex}`)
+  } catch (error) {
+    console.error('Error', error);
+    
+  }
+});
 
 router.get('/recipes', async (req, res) => {
   const recipes = await db.getAllRecipes()
@@ -46,6 +58,23 @@ router.post('/recipes', async (req, res) => {
 
   res.render('partials/showRecipes', { recipes })
 })
+
+router.get('/:id', async(req,res)=>{
+  // const randomNumber = Math.floor(Math.random()*6)
+  // console.log(randomNumber)
+  // const id = Number(req.params.randomNumber)
+  // console.log(id)
+  const id = Number(req.params.id)
+  // console.log(id)
+  const recipe = await db.getSingleRecipeById(id)
+  // console.log(recipe)
+  res.render('partials/singleRecipe', recipe)
+})
+
+
+
+
+
 
 
 router.get('/:id/comments', async (req, res) => {

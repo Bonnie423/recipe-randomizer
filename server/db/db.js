@@ -24,3 +24,7 @@ export async function getComments(recipeId){
 export async function getRecipesBySearch(recipe){
   return connection('recipes').select('*').where('name', 'like', `${recipe}%`)
 }
+
+export async function getSingleRecipeById(id){
+  return connection('recipes').where('id', id).select('*').first()
+}
