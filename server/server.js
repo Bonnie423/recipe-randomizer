@@ -16,7 +16,7 @@ server.engine('hbs', handlebars.engine({ extname: 'hbs' }))
 server.set('view engine', 'hbs')
 server.set('views', Path.join(__dirname, 'views'))
 server.use(express.urlencoded({ extended: true }))
-
+server.use(express.static(__dirname + '/public'))
 // Routes
 server.use('/', userRoutes)
 
