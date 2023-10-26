@@ -1,10 +1,11 @@
 
 <div>
-{{#each recipes}}
+
   <h3>{{name}}</h3>
     <img src="{{image}}" alt="{{name}}" />
      <p class="data">{{description}}</p>
     <a href="{{link}}">{{link}}</a>
-{{/each}}
+
 </div>
-<button>Randomize a Different Recipe</button>
+
+<a href="/{{id}}/comments"><button>View Comments</button></a>
