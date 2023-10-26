@@ -16,8 +16,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-
-
 router.get('/', async (req, res) => {
   try {
     res.render('home')
@@ -26,23 +24,21 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/random', async(req, res) => {
-  console.log('hi')
-  try { 
-    const recipes = await db.getAllRecipes();
+router.get('/random', async (req, res) => {
+  try {
+    const recipes = await db.getAllRecipes()
     console.log(recipes)
 
-    if (recipes.length === 0 ){
-      return res.status(404).json({error: 'no recipes were found'})
+    if (recipes.length === 0) {
+      return res.status(404).json({ error: 'no recipes were found' })
     }
-    console.log(recipes)
-    const randomIndex = Math.floor(Math.random()* recipes.length);
-   res.redirect(`/${randomIndex}`)
+
+    const randomIndex = Math.floor(Math.random() * recipes.length) + 1
+    res.redirect(`/${randomIndex}`)
   } catch (error) {
-    console.error('Error', error);
-    
+    console.error('Error', error)
   }
-});
+})
 
 router.get('/recipes', async (req, res) => {
   const recipes = await db.getAllRecipes()
@@ -59,23 +55,25 @@ router.post('/recipes', async (req, res) => {
   res.render('partials/showRecipes', { recipes })
 })
 
-router.get('/:id', async(req,res)=>{
-  // const randomNumber = Math.floor(Math.random()*6)
-  // console.log(randomNumber)
-  // const id = Number(req.params.randomNumber)
-  // console.log(id)
-  const id = Number(req.params.id)
-  // console.log(id)
-  const recipe = await db.getSingleRecipeById(id)
-  // console.log(recipe)
-  res.render('partials/singleRecipe', recipe)
+router.post('/:id/comments/add', async(req,res)=>{
+  const recipeId = Number(req.params.id)
+  console.log(recipeId)
+  const comment = req.body.comment
+  console.log(comment)
+  const newComment = { comment}
+  const comments = await db.addComments(newComment)
+  console.log(comments)
+  res.redirect(`/comments`)
+
 })
 
+router.get('/:id', async (req, res) => {
+  const id = Number(req.params.id)
 
+  const recipe = await db.getSingleRecipeById(id)
 
-
-
-
+  res.render('partials/singleRecipe', recipe)
+})
 
 router.get('/:id/comments', async (req, res) => {
   const recipeId = Number(req.params.id)
@@ -83,7 +81,7 @@ router.get('/:id/comments', async (req, res) => {
   res.render('partials/viewComments', { comments })
 })
 
-router.get('/recipes/add', (req, res) => {
+router.get('/:id/recipes/add', (req, res) => {
   res.render('partials/addRecipe')
 })
 
@@ -96,7 +94,7 @@ router.get('/recipes/add', (req, res) => {
 //       image = req.body.imageURL
 //     }
 //     const { name, discription, name } = req.body
-    
+
 //   } catch (err) {
 //     console.error(err)
 //   }

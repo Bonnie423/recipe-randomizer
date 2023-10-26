@@ -28,3 +28,7 @@ export async function getRecipesBySearch(recipe){
 export async function getSingleRecipeById(id){
   return connection('recipes').where('id', id).select('*').first()
 }
+
+export async function addComments(comment){
+  return connection('comments').insert(comment).select('*')
+}
