@@ -1,0 +1,19 @@
+<h2>Edit Recipe: <span class="data">{{name}}</span></h2>
+
+<form method="POST" action="/recipes/edit" class="form">
+  <input type="hidden" name="id" value="{{id}}">
+
+  <label for="name">Recipe name</label>
+  <input type="text" id="name" name="name" placeholder="Recipe name" value="{{name}}">
+  
+  <label for="description">Description</label>
+  <textarea rows="4" id="description" name="description" placeholder="Recipe description">{{description}}</textarea>
+  
+  <div></div>
+  <button>Update recipe</button>
+</form>
+<form method="POST" action="/recipes/delete" class="form">
+  <input type="hidden" name="id" value="{{id}}">
+  <div></div>
+  <button class="delete">Delete recipe</button>
+</form>

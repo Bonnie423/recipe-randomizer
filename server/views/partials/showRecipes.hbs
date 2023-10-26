@@ -1,0 +1,10 @@
+<h2>Recipes</h2>
+<a class="nav" href="/recipes/add/{{recipe}}">add recipe</a>
+
+<ul >
+  {{#each recipes}}
+  <li>
+    {{> singleRecipe}}
+  </li>
+  {{/each}}
+</ul>

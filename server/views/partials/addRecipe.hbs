@@ -1,0 +1,25 @@
+<h2>add Recipe: <span class="data">{{recipe.name}}</span></h2>
+<form action="/recipes/add" method="post"  class="form">
+  <input type="hidden" name="id" value="{{recipe.id}}">
+<label for="name" class="label">Recipe Name: 
+  <input type="text" id="name" name="name" placeholder="recipe" value="{{recipe.name}}">
+</label>
+<label for="imageURL"> Image URL:
+  <input type="text" name="imageURL" id="image" placeholder="Enter an external url or choose a local file">
+</label>
+
+<label for="UploadImage" class="form-item">
+   Upload Image: 
+  <input type="file" name="image">
+</label>
+  
+<label for="description" class="label"> Description
+  <textarea rows="5" id="description" name="description"
+    placeholder="Recipe description">{{recipe.description}}</textarea>
+ </label>
+ <label for="link">
+  Recipe Link:
+  <input type="url" placeholder="optional">
+ </label>
+<button>Submit</button>
+</form>
