@@ -1,5 +1,5 @@
 <h2>add Recipe: <span class="data">{{recipe.name}}</span></h2>
-<form action="/recipes/add" method="post"  class="form">
+<form action="/recipes/add" method="post"  class="form"  enctype="multipart/form-data">
   <input type="hidden" name="id" value="{{recipe.id}}">
 <label for="name" class="label">Recipe Name: 
   <input type="text" id="name" name="name" placeholder="recipe" value="{{recipe.name}}">
