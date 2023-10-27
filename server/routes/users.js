@@ -31,8 +31,6 @@ router.get('/random', async (req, res) => {
 
     if (recipes.length === 0) {
       return res.status(404).json({ error: 'no recipes were found' })
-    if (recipes.length === 0) {
-      return res.status(404).json({ error: 'no recipes were found' })
     }
 
     const randomIndex = Math.floor(Math.random() * recipes.length) + 1
@@ -41,7 +39,6 @@ router.get('/random', async (req, res) => {
     console.error('Error', error)
     console.error('Error', error)
   }
-})
 })
 
 router.get('/recipes', async (req, res) => {
@@ -59,7 +56,7 @@ router.post('/recipes', async (req, res) => {
   res.render('partials/showRecipes', { recipes })
 })
 
-router.get('/recipes/add', (req,res)=>{
+router.get('/recipes/add', (req, res) => {
   res.render('partials/addRecipe')
 })
 
@@ -72,28 +69,24 @@ router.post('/recipes/add', upload.single('image'), async (req, res) => {
       image = req.body.imageURL
     }
     const { name, description, link } = req.body
-    const newRecipe = {name, description, link, image}
+    const newRecipe = { name, description, link, image }
     await db.addRecipe(newRecipe)
     res.redirect('/recipes')
-
   } catch (err) {
     console.error(err)
   }
 })
 
-router.get('/recipes/edit', async(req,res)=>{
-  
-})
-router.post('/:id/comments/add', async(req,res)=>{
+router.get('/recipes/edit', async (req, res) => {})
+router.post('/:id/comments/add', async (req, res) => {
   const recipeId = Number(req.params.id)
   console.log(recipeId)
   const comment = req.body.comment
   console.log(comment)
-  const newComment = { comment}
+  const newComment = { comment }
   const comments = await db.addComments(newComment)
   console.log(comments)
   res.redirect(`/comments`)
-
 })
 
 router.get('/:id', async (req, res) => {
@@ -109,8 +102,5 @@ router.get('/:id/comments', async (req, res) => {
   const comments = await db.getComments(recipeId)
   res.render('partials/viewComments', { comments })
 })
-
-
-
 
 export default router
