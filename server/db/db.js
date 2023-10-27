@@ -40,3 +40,7 @@ return connection('recipes').insert(newRecipe).returning('*')
 export async function deleteRecipe(id){
   return connection('recipes').where('id', id).del()
 }
+
+export async function updateRecipe(newRecipe){
+  return connection('recipes').where('id', newRecipe.id).update(newRecipe)
+}

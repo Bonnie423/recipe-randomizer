@@ -7,7 +7,7 @@ const router = express.Router()
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/images')
+    cb(null, 'server/public/Images')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -27,7 +27,6 @@ router.get('/', async (req, res) => {
 router.get('/random', async (req, res) => {
   try {
     const recipes = await db.getAllRecipes()
-    console.log(recipes)
 
     if (recipes.length === 0) {
       return res.status(404).json({ error: 'no recipes were found' })
@@ -36,7 +35,6 @@ router.get('/random', async (req, res) => {
     const randomIndex = Math.floor(Math.random() * recipes.length) + 1
     res.redirect(`/${randomIndex}`)
   } catch (error) {
-    console.error('Error', error)
     console.error('Error', error)
   }
 })
@@ -49,9 +47,8 @@ router.get('/recipes', async (req, res) => {
 
 router.post('/recipes', async (req, res) => {
   const recipe = req.body.search
-  console.log(recipe)
+
   const recipes = await db.getRecipesBySearch(recipe)
-  console.log(recipes)
 
   res.render('partials/showRecipes', { recipes })
 })
@@ -96,7 +93,20 @@ router.post('/delete', async (req, res) => {
 })
 
 router.get('/:id/edit', async (req, res) => {
-  res.render('partials/editRecipe')
+  const id = Number(req.params.id)
+
+  const recipe = await db.getSingleRecipeById(id)
+  res.render('partials/editRecipe', recipe)
+})
+
+router.post('/:id/edit', async (req, res) => {
+  const id = Number(req.body.id)
+
+  const { name, description } = req.body
+  const newRecipe = { id, name, description }
+  await db.updateRecipe(newRecipe)
+
+  res.redirect('/recipes')
 })
 
 router.get('/:id', async (req, res) => {
