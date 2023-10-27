@@ -13,19 +13,19 @@ export const connection = knex(config)
 //   return connection('users').where('id', id).first()
 // }
 
-export async function getAllRecipes(){
+export async function getAllRecipes() {
   return connection('recipes').select('*')
 }
 
-export async function getComments(recipeId){
+export async function getComments(recipeId) {
   return connection('comments').where('recipe_id', recipeId).select('comment')
 }
 
-export async function getRecipesBySearch(recipe){
+export async function getRecipesBySearch(recipe) {
   return connection('recipes').select('*').where('name', 'like', `${recipe}%`)
 }
 
-export async function getSingleRecipeById(id){
+export async function getSingleRecipeById(id) {
   return connection('recipes').where('id', id).select('*').first()
 }
 

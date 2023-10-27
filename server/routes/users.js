@@ -31,13 +31,17 @@ router.get('/random', async (req, res) => {
 
     if (recipes.length === 0) {
       return res.status(404).json({ error: 'no recipes were found' })
+    if (recipes.length === 0) {
+      return res.status(404).json({ error: 'no recipes were found' })
     }
 
     const randomIndex = Math.floor(Math.random() * recipes.length) + 1
     res.redirect(`/${randomIndex}`)
   } catch (error) {
     console.error('Error', error)
+    console.error('Error', error)
   }
+})
 })
 
 router.get('/recipes', async (req, res) => {
