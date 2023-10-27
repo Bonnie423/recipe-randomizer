@@ -1,10 +1,11 @@
 
 <h2>Add Comments</h2>
-<form class="form" action="/{{id}}/comments/add" method="post">
-  
+<form class="form" action="/comments/add" method="post">
+  <input type="hidden" name="recipeId" value="{{recipeId}}">
   <label for="comment" class="form-item">
     Comment:
     <input type="text" name="comment" id="comment" >
+    <input type="hidden" name
   </label>
 <button>Submit</button>
-</form>
+</form> 

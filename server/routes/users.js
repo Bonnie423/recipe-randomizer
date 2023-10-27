@@ -77,16 +77,26 @@ router.post('/recipes/add', upload.single('image'), async (req, res) => {
   }
 })
 
-router.get('/recipes/edit', async (req, res) => {})
-router.post('/:id/comments/add', async (req, res) => {
-  const recipeId = Number(req.params.id)
-  console.log(recipeId)
+router.post('/comments/add', async (req, res) => {
+  const recipeId = Number(req.body.recipeId)
+
   const comment = req.body.comment
-  console.log(comment)
-  const newComment = { comment }
+
+  const newComment = { recipe_id: recipeId, comment }
   const comments = await db.addComments(newComment)
   console.log(comments)
-  res.redirect(`/comments`)
+  res.redirect(`/${recipeId}/comments`)
+})
+
+router.post('/delete', async (req, res) => {
+  const id = Number(req.body.id)
+  console.log(id)
+  await db.deleteRecipe(id)
+  res.redirect('/recipes')
+})
+
+router.get('/:id/edit', async (req, res) => {
+  res.render('partials/editRecipe')
 })
 
 router.get('/:id', async (req, res) => {
@@ -100,7 +110,7 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/comments', async (req, res) => {
   const recipeId = Number(req.params.id)
   const comments = await db.getComments(recipeId)
-  res.render('partials/viewComments', { comments })
+  res.render('partials/viewComments', { recipeId, comments })
 })
 
 export default router

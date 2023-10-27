@@ -34,5 +34,9 @@ export async function addComments(comment){
 }
 
 export async function addRecipe(newRecipe){
-return connection('recipes').insert(newRecipe)
+return connection('recipes').insert(newRecipe).returning('*')
+}
+
+export async function deleteRecipe(id){
+  return connection('recipes').where('id', id).del()
 }
