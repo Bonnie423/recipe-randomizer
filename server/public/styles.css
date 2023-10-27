@@ -28,6 +28,7 @@ a:link,
 a:visited {
   color: #000724;
   text-decoration: none;
+  font-size: 0.8rem;
 }
 
 a:hover {
@@ -72,6 +73,7 @@ button {
   background-color: rgb(192, 207, 126);
   border: none;
   border-radius: 5px;
+  margin: 1vw 0;
 }
 
 .search{
@@ -94,4 +96,14 @@ button {
 .mark{
   font-size: 5rem;
   color: orange;
+}
+.recipes{
+  background-color: white;
+}
+.re-container{
+padding: 5vw;
+}
+
+.home{
+  font-size: 1.5rem;
 }
