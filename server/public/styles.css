@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #afc2d5;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: white;
+  min-width: 360px;
+  max-width: 1150px;
+  margin: 0 auto;
+  text-align: center;
+  height: 100vh;
+}
+
+nav {
+  background-color: #feffb1;
+  width: 100%;
+  padding: 0.25rem 0 0.25rem 0;
+  font-size: 2rem;
+}
+
+a:link,
+a:visited {
+  color: #000724;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b80c09;
+}
+
+textarea {
+  width: 300px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 200px 300px;
+  grid-auto-flow: row;
+  grid-gap: 0.8em;
+  padding: 1.1em;
+  width: max-content;
+}
+
+img {
+  width: 15vw;
+
+  border: solid 1px orange;
+  border-radius: 5px;
+  margin: 2vw 1vw;
+}
+
+input {
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* margin: 5vw; */
+}
+
+button {
+  padding: 5px;
+  background-color: rgb(192, 207, 126);
+  border: none;
+  border-radius: 5px;
+}
+
+.search{
+  margin: 20px 0;
+  padding: 5px;
+  border: solid 2px orange;
+  border-radius: 5px;
+}
+
+.home-img{
+  width: 30vw;
+  margin: 5vw auto;
+}
+
+.title{
+  margin: 5vw auto 0;
+  font-size: 3rem;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+.mark{
+  font-size: 5rem;
+  color: orange;
+}
