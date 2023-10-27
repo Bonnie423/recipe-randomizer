@@ -55,6 +55,31 @@ router.post('/recipes', async (req, res) => {
   res.render('partials/showRecipes', { recipes })
 })
 
+router.get('/recipes/add', (req,res)=>{
+  res.render('partials/addRecipe')
+})
+
+router.post('/recipes/add', upload.single('image'), async (req, res) => {
+  try {
+    let image = ''
+    if (req.file) {
+      image = `Images/${req.file.originalname}`
+    } else if (req.body.imageURL) {
+      image = req.body.imageURL
+    }
+    const { name, description, link } = req.body
+    const newRecipe = {name, description, link, image}
+    await db.addRecipe(newRecipe)
+    res.redirect('/recipes')
+
+  } catch (err) {
+    console.error(err)
+  }
+})
+
+router.get('/recipes/edit', async(req,res)=>{
+  
+})
 router.post('/:id/comments/add', async(req,res)=>{
   const recipeId = Number(req.params.id)
   console.log(recipeId)
@@ -81,22 +106,7 @@ router.get('/:id/comments', async (req, res) => {
   res.render('partials/viewComments', { comments })
 })
 
-router.get('/:id/recipes/add', (req, res) => {
-  res.render('partials/addRecipe')
-})
 
-// router.post('/recipes/add', upload.single('image'), async (req, res) => {
-//   try {
-//     let image = ''
-//     if (req.file) {
-//       image = `images/${req.file.originalname}`
-//     } else if (req.body.imageURL) {
-//       image = req.body.imageURL
-//     }
-//     const { name, discription, name } = req.body
 
-//   } catch (err) {
-//     console.error(err)
-//   }
-// })
+
 export default router

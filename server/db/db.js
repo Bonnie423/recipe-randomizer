@@ -32,3 +32,7 @@ export async function getSingleRecipeById(id){
 export async function addComments(comment){
   return connection('comments').insert(comment).select('*')
 }
+
+export async function addRecipe(newRecipe){
+return connection('recipes').insert(newRecipe)
+}
