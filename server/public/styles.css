@@ -17,6 +17,12 @@ body {
   height: 100vh;
 }
 
+.header {
+  background: url('/Images/bell-peppers.jpg') no-repeat center center/ cover;
+  height: 10vw;
+  padding-top: 2vw;
+}
+
 nav {
   background-color: #feffb1;
   width: 100%;
@@ -35,6 +41,16 @@ a:hover {
   color: #b80c09;
 }
 
+#home {
+  font-size: 1.5rem;
+  border-bottom: solid 2px orange;
+  color: antiquewhite;
+}
+
+#home:hover {
+  font-size: 1.3rem;
+}
+
 textarea {
   width: 300px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,6 +63,7 @@ textarea {
   grid-gap: 0.8em;
   padding: 1.1em;
   width: max-content;
+  margin: 0 auto;
 }
 
 img {
@@ -75,35 +92,34 @@ button {
   border-radius: 5px;
   margin: 1vw 0;
 }
+.home {
+  background-color: white;
+}
 
-.search{
+.search {
   margin: 20px 0;
   padding: 5px;
   border: solid 2px orange;
   border-radius: 5px;
 }
 
-.home-img{
+.home-img {
   width: 30vw;
   margin: 5vw auto;
 }
 
-.title{
+.title {
   margin: 5vw auto 0;
   font-size: 3rem;
-  font-family:Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.mark{
+.mark {
   font-size: 5rem;
   color: orange;
 }
-.recipes{
+.recipes {
   background-color: white;
 }
-.re-container{
-padding: 5vw;
-}
-
-.home{
-  font-size: 1.5rem;
+.re-container {
+  padding: 5vw;
 }
